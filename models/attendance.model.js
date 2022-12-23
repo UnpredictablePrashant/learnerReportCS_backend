@@ -11,7 +11,7 @@ let AttendanceSchema = Schema(
       type: String,
       require: true,
     },
-    Date: {
+    attendanceDate: {
         presentDate:[],
         absentDate: []
     },
