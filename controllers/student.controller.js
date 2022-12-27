@@ -2,6 +2,8 @@ const Student = require("../models/student.model");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const { log } = require("console");
+const express = require("express");
+const routes = express.Router();
 
 const hashKey = process.env.HASH_KEY;
 const jwtSecretKey = process.env.JWT_SECRET_KEY;
@@ -68,10 +70,18 @@ const StudentLogin = async (req, res) => {
       } else {
         res.send("Invalid User");
       }
-    });
+    }).clone();
   }
 };
 
+const getSingleStudent = async (req, res) => {
+  const singleStudent = await Student.findOne({_id: req.params.id}, (err, result) => {
+      if(result) {
+        res.send(result);
+      } else {
+        res.send(err);
+      }
+    }).clone();  
+}
 
-
-module.exports = { Register, StudentLogin };
+module.exports = { Register, StudentLogin , getSingleStudent };

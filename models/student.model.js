@@ -3,12 +3,18 @@ const { Schema } = mongoose;
 
 let studentSchema = Schema(
   {
+    attendance: [{ type: mongoose.Schema.ObjectId, ref: "AttendanceInfo" }],
+    indexNo: {
+      type: String,
+      unique: true,
+      required: true,
+    },
     batchName: {
       type: String,
-      require: true
+      require: true,
     },
     userId: {
-      type: Number
+      type: Number,
     },
     username: {
       type: String,
@@ -40,9 +46,6 @@ let studentSchema = Schema(
       type: String,
     },
     courseName: {
-      type: String,
-    },
-    batch: {
       type: String,
     },
     yearOfExp: {

@@ -3,6 +3,11 @@ const { Schema } = mongoose;
 
 let AttendanceSchema = Schema(
   {
+    student: {type : mongoose.Schema.ObjectId, ref : 'studentInfo'},
+    indexNo: {
+      type: String,
+      required: true
+  },
     BatchName: {
       type: String,
       require: true,
@@ -12,10 +17,11 @@ let AttendanceSchema = Schema(
       require: true,
     },
     attendanceDate: {
-        presentDate:[],
-        absentDate: []
+      type: String,
     },
-    
+    isPresent: {
+      type: Boolean
+    },
     TotalClass:{
         type: Number,
         default: 0,

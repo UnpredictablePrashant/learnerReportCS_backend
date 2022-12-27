@@ -1,65 +1,39 @@
 const AttendanceModel = require("../models/attendance.model");
+const studentModel = require("../models/student.model");
+const attendanceRegister = async  (req, res) => {
+  const req_JSON_attencdance = req.body;
+  console.log(req_JSON_attencdance)
+ // Find student record
+ const student = await studentModel.findOne({ indexNo: req_JSON_attencdance.indexNo });
+ if( !student ) return res.status(400).send({ message: `Student not found for index no. - ${req_JSON_attencdance.indexNo}` });
 
-const attendanceRegister = (req, res) => {
-  const att = req.body;
-  console.log(att);
-  att.forEach((element) => {
-    AttendanceModel.findOne(
-      { StudentName: element.StudentName },
-      (err, result) => {
-        if (result) {
-          element.isPresent?result.attendanceDate.presentDate.push(element.date):result.attendanceDate.absentDate.push(element.date);
-          console.log("-----------------found record")
-          // if (element.isPresent) {
-          //   result.attendanceDate.presentDate.push(element.date);
-          // } else {
-          //   result.attendanceDate.absentDate.push(element.date);
-          // }
-          let updateResult = AttendanceModel.findOneAndUpdate(
-            { StudentName: element.StudentName },
-            { 
-              attendanceDate : result.attendanceDate
-            },
-            (err, result) => {
-              err?res.send("error occured"):res.send("updated successfully");
-              // if(err){
-              //   console.log("error occured")
-              // } else {
-              //   res.send("updated successfully")
-              // }
-            }
-            )
+      // Create an Attendance record
+      const attendance = new AttendanceModel({
+        student: student._id,
+        indexNo: req_JSON_attencdance.indexNo,     
+        BatchName: req_JSON_attencdance.BatchName,     
+        StudentName: req_JSON_attencdance.StudentName,  
+        attendanceDate: req_JSON_attencdance.attendanceDate,
+        isPresent: req_JSON_attencdance.isPresent
+    });
 
-          //update the record with date
-        } else {
-          console.log("--------------in else loop")
-          let payload = {
-            BatchName: element.BatchName,
-            StudentName: element.StudentName,
-            attendanceDate: {
-              presentDate: [],
-              absentDate: [],
-            },
-          };
-          element.isPresent?payload.attendanceDate.presentDate.push(element.date):payload.attendanceDate.absentDate.push(element.date);
-          // if (element.isPresent) {
-          //   payload.attendanceDate.presentDate.push(element.date);
-          // } else {
-          //   payload.attendanceDate.absentDate.push(element.date);
-          // }
-          const newRecord = new AttendanceModel({ ...payload });
-          newRecord.save((err) => {
-            err?res.send(err):res.send({ message: "Attendance created successfully" });
-            // if (err) {
-            //   res.send(err);
-            // } else {
-            //   res.send({ message: "Attendance created successfully" });
-            // }
-          });
-        }
-      }
-    );
-  });
+    // Save Attendance record in the database
+    try {
+        const savedRecord = await attendance.save();
+        const updatedStudent = await studentModel.findByIdAndUpdate(student._id, {$push: {attendance: savedRecord._id}}, {new: true});
+        res.send({
+            message: "SUCCESS",
+            savedRecord,
+            updatedStudent
+        });
+    } catch (err) {
+       console.log("error: ", err)
+        res.status(500).send({
+            message: err.message || "Some error occurred while creating the Attendance record.",
+            error: err.code
+        });
+    }
+
 };
 
 module.exports = { attendanceRegister };
