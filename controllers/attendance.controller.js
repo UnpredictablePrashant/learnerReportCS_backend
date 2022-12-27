@@ -19,13 +19,20 @@ const attendanceRegister = async  (req, res) => {
 
     // Save Attendance record in the database
     try {
-        const savedRecord = await attendance.save();
-        const updatedStudent = await studentModel.findByIdAndUpdate(student._id, {$push: {attendance: savedRecord._id}}, {new: true});
-        res.send({
-            message: "SUCCESS",
-            savedRecord,
-            updatedStudent
-        });
+        const checkRec = await AttendanceModel.findOne({attendanceDate:attendance.attendanceDate});
+        if(checkRec){
+          console.log({checkRec})
+          const updateRec = await AttendanceModel.findOneAndUpdate({attendanceDate:attendance.attendanceDate},{isPresent:attendance.isPresent}, {new:true})
+          console.log({updateRec});
+          res.send(updateRec)
+        } else {
+          const savedRecord = await attendance.save();
+          res.send({
+              message: "SUCCESS",
+              savedRecord
+          });
+        }
+        // const updatedStudent = await studentModel.findByIdAndUpdate(student._id, {$push: {attendance: savedRecord._id}}, {new: true});
     } catch (err) {
        console.log("error: ", err)
         res.status(500).send({
