@@ -4,13 +4,11 @@ const attendanceRegister = async  (req, res) => {
   const req_JSON_attencdance = req.body;
   console.log(req_JSON_attencdance)
  // Find student record
- const student = await studentModel.findOne({ indexNo: req_JSON_attencdance.indexNo });
- if( !student ) return res.status(400).send({ message: `Student not found for index no. - ${req_JSON_attencdance.indexNo}` });
+//  const student = await studentModel.findOne({_id});
+//  if( !student ) return res.status(400).send({ message: `Student not found for index no. - ${req_JSON_attencdance.indexNo}` });
 
       // Create an Attendance record
       const attendance = new AttendanceModel({
-        student: student._id,
-        indexNo: req_JSON_attencdance.indexNo,     
         BatchName: req_JSON_attencdance.BatchName,     
         StudentName: req_JSON_attencdance.StudentName,  
         attendanceDate: req_JSON_attencdance.attendanceDate,
@@ -21,9 +19,9 @@ const attendanceRegister = async  (req, res) => {
     try {
         const checkRec = await AttendanceModel.findOne({attendanceDate:attendance.attendanceDate});
         if(checkRec){
-          console.log({checkRec})
+         
           const updateRec = await AttendanceModel.findOneAndUpdate({attendanceDate:attendance.attendanceDate},{isPresent:attendance.isPresent}, {new:true})
-          console.log({updateRec});
+
           res.send(updateRec)
         } else {
           const savedRecord = await attendance.save();
