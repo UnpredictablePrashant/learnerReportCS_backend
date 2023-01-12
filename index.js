@@ -16,7 +16,9 @@ const facultyRoute = require("./routes/facultyRoute");
 const questionUploadRoute =  require("./routes/questionUpload.routes");
 const batchRegisterRoute = require("./routes/batchRegister.route")
 const getBatchRoute = require("./routes/common.route");
-const attendanceRoute = require("./routes/attendance.routes")
+const attendanceRoute = require("./routes/attendance.routes");
+const capstoneroute = require("./routes/capstone.routes");
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
@@ -30,7 +32,7 @@ app.use("/", getBatchRoute);
 app.use("/", questionUploadRoute)
 app.use("/batch" , batchRegisterRoute)
 app.use("/attendance" , attendanceRoute)
-
+app.use("/cpprogress", capstoneroute)
 // app.use("/users",);
 
 app.get("/", (req, res) => {
