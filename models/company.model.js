@@ -1,0 +1,98 @@
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+
+let CompanySchema = Schema(
+    {
+        jobApplicationId:{
+            type:Number
+        },
+        PocFromHV:{
+            type:String
+        },
+        companyName:{
+            type:String
+        },
+        jobTitle:{
+            type:String
+        },
+        driveIsFor:{
+            type:String
+        },
+        Segment:{
+            type:String
+        },
+        hrEmailId:{
+            type:String
+        },
+        hrMobileNo:{
+            type:String
+        },
+        JDfromCompany:{
+            type:String
+        },
+        HiringLocation:{
+            type:Array
+        },
+        isWFHavailable:{
+            type:Boolean
+        },
+        WFHDuration:{
+            type:Number
+        },
+        minExperience:{
+            type:Number
+        },
+        maxExperience:{
+            type:Number
+        },
+        minRelevantYears:{
+            type:Number
+        },
+        maxRelevantYears:{
+            type:Number
+        },
+        minCTC:{
+            type:Number
+        },
+        minInternshipStipend:{
+            type:Number
+        },
+        maxInternshipStipend:{
+            type:Number
+        },
+        internshipDuration:{
+            type:Number
+        },
+        variableComponentInCTC:{
+            type:Number
+        },
+        permissibleNoticePeriod:{
+            type:Number
+        },
+        passoutBatchReq:{
+            type:Number
+        },
+        noOfVacancy:{
+            type:Number
+        },
+        lastDateOfApplication:{
+            type:String
+        },
+        noOfRecruitmentRound:{
+            type:Number
+        },
+        roundDetail:{
+            type:Object
+        },
+        additionalRemarksFromRecruiter:{
+            type:String
+        },
+        preferredSPOC:{
+            type:String
+        },
+    }
+)
+
+const Company = mongoose.model("ComapanyInfo", CompanySchema);
+
+module.exports = Company;
