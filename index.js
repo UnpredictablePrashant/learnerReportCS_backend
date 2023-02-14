@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const connect = require("./database/mongoDb");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -18,6 +18,7 @@ const batchRegisterRoute = require("./routes/batchRegister.route");
 const getBatchRoute = require("./routes/common.route");
 const attendanceRoute = require("./routes/attendance.routes");
 const companyRoute = require("./routes/company.routes");
+const assessmentRoute = require("./routes/assessment.routes")
 
 app.use(cookieParser());
 app.use(express.json());
@@ -33,6 +34,7 @@ app.use("/", questionUploadRoute);
 app.use("/batch" , batchRegisterRoute);
 app.use("/attendance" , attendanceRoute);
 app.use("/company", companyRoute);
+app.use("/assessment", assessmentRoute);
 
 // app.use("/users",);
 
@@ -42,5 +44,5 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
   connect();
-  console.log(`Example app listening at http://localhost:3000`);
+  console.log(`Example app listening at http://localhost:3001`);
 });
