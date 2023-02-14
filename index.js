@@ -18,7 +18,6 @@ const batchRegisterRoute = require("./routes/batchRegister.route");
 const getBatchRoute = require("./routes/common.route");
 const attendanceRoute = require("./routes/attendance.routes");
 const companyRoute = require("./routes/company.routes");
-const assessmentRoute = require("./routes/assessment.routes")
 
 app.use(cookieParser());
 app.use(express.json());
@@ -34,7 +33,6 @@ app.use("/", questionUploadRoute);
 app.use("/batch" , batchRegisterRoute);
 app.use("/attendance" , attendanceRoute);
 app.use("/company", companyRoute);
-app.use("/assessment", assessmentRoute);
 
 // app.use("/users",);
 
