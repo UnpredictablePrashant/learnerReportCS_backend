@@ -14,7 +14,7 @@ const postCapstoneProgress = (req, res, next) => {
 
 const getCapstoneProgress = (req, res, next) => {
     const studentId = req.query.studentId;
-    CapstoneProgressModel.findOne({_id : studentId},'studentId email', (err, result) => {
+    CapstoneProgressModel.findOne({_id : studentId}, (err, result) => {
         res.status(200).send(result);
     });
 }
