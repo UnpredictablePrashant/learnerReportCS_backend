@@ -3,9 +3,11 @@ const routes = express.Router();
 const capstoneProgressController  = require("../controllers/capstoneProgress.controller");
 const authorization = require("../middlewares/middleware");
 
-routes.get("/getCapstoneQualification", authorization, capstoneProgressController.getCapstoneQualification);
-routes.get("/getCapstoneApproachDate", authorization, capstoneProgressController.getCapstoneApproachDate);
-routes.get("/getCapstoneSessionAttendance", authorization, capstoneProgressController.getCapstoneSessionAttendance);
-routes.get("/getCapstonePerformance", authorization, capstoneProgressController.getCapstonePerformance);
+routes.post("/postCapstoneProgress", capstoneProgressController.postCapstoneProgress);
+routes.get("/getCapstoneProgress", capstoneProgressController.getCapstoneProgress);
+routes.get("/getCapstoneQualification", capstoneProgressController.getCapstoneQualification);
+routes.get("/getCapstoneApproachDate", capstoneProgressController.getCapstoneApproachDate);
+routes.get("/getCapstoneSessionAttendance", capstoneProgressController.getCapstoneSessionAttendance);
+routes.get("/getCapstonePerformance", capstoneProgressController.getCapstonePerformance);
 
 module.exports = routes;

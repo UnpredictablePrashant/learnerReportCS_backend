@@ -19,6 +19,7 @@ const getBatchRoute = require("./routes/common.route");
 const attendanceRoute = require("./routes/attendance.routes");
 const companyRoute = require("./routes/company.routes");
 const placementRoute = require("./routes/learnerPlacement.routes");
+const capstoneProgressRoutes = require("./routes/capstoneProgress.routes");
 
 app.use(cookieParser());
 app.use(express.json());
@@ -36,6 +37,7 @@ app.use("/attendance" , attendanceRoute);
 app.use("/company", companyRoute);
 app.use("/company", companyRoute);
 app.use("/placement", placementRoute);
+app.use("/capstoneProgress", capstoneProgressRoutes);
 // app.use("/users",);
 
 app.get("/", (req, res) => {

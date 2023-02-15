@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-let capstoneProgressSchema = Schema(
+const capstoneProgressSchema = Schema(
   {
     studentId: {
         type: Schema.Types.ObjectId,
@@ -102,6 +102,5 @@ let capstoneProgressSchema = Schema(
   }
 );
 
-const capstoneProgress = mongoose.model("capstoneProgressInfo", capstoneProgressSchema);
+module.exports = mongoose.model("capstoneProgressInfo", capstoneProgressSchema);
 
-module.exports = capstoneProgress;
