@@ -84,4 +84,30 @@ const getSingleStudent = async (req, res) => {
     }).clone();  
 }
 
-module.exports = { Register, StudentLogin , getSingleStudent };
+const updateStudentProfile = async(req, res) => {
+  const payload = {
+    username: req.body.username,
+    email: req.body.email,
+    fullname: req.body.fullname,
+    phoneNo: req.body.phoneNo,
+    userImage: req.body.userImage,
+    password: req.body.password,
+    workingStatus: req.body.workingStatus,
+    currentCTC: req.body.currentCTC,
+    courseName: req.body.courseName,
+    batchName: req.body.batchName,
+    yearOfExp: req.body.yearOfExp,
+    qualification: req.body.qualification,
+    userType: req.body.userType,
+    githubLink: req.body.githubLink,
+  };
+ 
+  let result = await Student.findOneAndUpdate({ _id: req.body._id }, payload, {
+    new: true,
+  });
+  if (result) {
+    res.send(result);
+  }
+}
+
+module.exports = { Register, StudentLogin , getSingleStudent, updateStudentProfile };
