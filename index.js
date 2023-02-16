@@ -18,6 +18,9 @@ const batchRegisterRoute = require("./routes/batchRegister.route");
 const getBatchRoute = require("./routes/common.route");
 const attendanceRoute = require("./routes/attendance.routes");
 const companyRoute = require("./routes/company.routes");
+
+const placementRoute = require("./routes/learnerPlacement.routes");
+const capstoneProgressRoutes = require("./routes/capstoneProgress.routes");
 const assessmentRoute = require("./routes/assessment.routes")
 
 
@@ -35,6 +38,8 @@ app.use("/", questionUploadRoute);
 app.use("/batch" , batchRegisterRoute);
 app.use("/attendance" , attendanceRoute);
 app.use("/company", companyRoute);
+app.use("/placement", placementRoute);
+app.use("/capstoneProgress", capstoneProgressRoutes);
 app.use("/assessment", assessmentRoute)
 
 // app.use("/users",);
