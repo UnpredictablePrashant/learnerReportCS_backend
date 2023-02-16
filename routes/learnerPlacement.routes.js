@@ -4,7 +4,7 @@ const routes = express.Router();
 const LearnerPlacement = require("../controllers/learnerOpportunity.controller");
 
 routes.post("/addPlacementOpprotunity", LearnerPlacement.addLearnerOpportunityDetails);
-// routes.get("/getCompanyList", Company.getCompanyList);
-// routes.post("/getCompanyDetails", Company.getCompanyDetails);
+routes.get("/getAllPlacementOpportunity", LearnerPlacement.getAllPlacementOpportunity);
+routes.post("/getStudentPlacementOpportunity", LearnerPlacement.getStudentPlacementOpportunity);
 
 module.exports = routes;
