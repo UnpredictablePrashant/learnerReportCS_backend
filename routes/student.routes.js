@@ -10,7 +10,7 @@ routes.post("/register", Register);
 routes.post("/login", StudentLogin);
 routes.get("/getstudent",  getAllStudent);
 routes.get("/:id" , getSingleStudent);
-routes.get("/updateStudentProfile",  updateStudentProfile);
+routes.put("/updateStudentProfile/:id",  updateStudentProfile);
 
 module.exports = routes;
 

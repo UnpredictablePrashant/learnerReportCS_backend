@@ -102,7 +102,7 @@ const updateStudentProfile = async(req, res) => {
     githubLink: req.body.githubLink,
   };
  
-  let result = await Student.findOneAndUpdate({ _id: req.body._id }, payload, {
+  let result = await Student.findOneAndUpdate({ _id: req.params.id}, payload, {
     new: true,
   });
   if (result) {

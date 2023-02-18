@@ -47,4 +47,14 @@ const attendanceRegister = async (req, res) => {
   }
 };
 
-module.exports = { attendanceRegister };
+const getattendance = async (req, res) => {
+  await AttendanceModel.find({studentId: req.params.id}, (err, result) => {
+    if(result) {
+      res.send(result);
+    } else {
+      res.send(err);
+    }
+  }).clone();  
+}
+
+module.exports = { attendanceRegister , getattendance};
