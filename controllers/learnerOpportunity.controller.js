@@ -36,7 +36,7 @@ const getAllPlacementOpportunity = async(req, res) => {
  */
 const getStudentPlacementOpportunity = async(req, res) => {
     let result = await LearnerOpportunityModel.find({
-        studentId:req.body.studentId
+        studentId: req.params.id
     });
     if (result) {
         res.status(200).send(result);
