@@ -42,4 +42,15 @@ const getCompanyDetails = async(req, res) => {
     }
 }
 
-module.exports = { addCompanyDetails, getCompanyList, getCompanyDetails }
+const getJobDetails = async(req, res) => {
+    let result = await CompanyModel.find({
+        jobApplicationId: req.params.id
+    });
+    if (result) {
+        res.status(200).send(result);
+    } else {
+        res.status(400).send("Unable to find Job details");
+    }
+}
+
+module.exports = { addCompanyDetails, getCompanyList, getCompanyDetails, getJobDetails }

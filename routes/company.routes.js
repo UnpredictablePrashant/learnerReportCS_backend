@@ -6,5 +6,6 @@ const Company = require("../controllers/company.controller");
 routes.post("/addCompanyDetails", Company.addCompanyDetails);
 routes.get("/getCompanyList", Company.getCompanyList);
 routes.post("/getCompanyDetails", Company.getCompanyDetails);
+routes.get("/getJobDetails/:id", Company.getJobDetails);
 
 module.exports = routes;
