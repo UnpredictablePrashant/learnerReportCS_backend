@@ -1,9 +1,10 @@
 const { careerService } = require("../models/careerService.model");
 const crypto = require("crypto");
 
+
 const hashKey = process.env.HASH_KEY;
 const jwt = require("jsonwebtoken");
-const { type } = require("os");
+const { default: mongoose } = require("mongoose");
 
 const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
@@ -78,8 +79,15 @@ function getAllCareerServices(req, res, next) {
   });
 }
 
+function getCareerServiceUser(req,res,next){
+  careerService.findOne({ _id: mongoose.Types.ObjectId(req.params.id)}, (err, result)=>{
+    res.send(result)
+  })
+}
+
 module.exports = {
   careerServiceRegister,
   careerServiceLogin,
   getAllCareerServices,
+  getCareerServiceUser
 };
