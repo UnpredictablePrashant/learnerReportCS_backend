@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { log } = require("console");
 const express = require("express");
 const routes = express.Router();
+const mongoose = require('mongoose')
 
 const hashKey = process.env.HASH_KEY;
 const jwtSecretKey = process.env.JWT_SECRET_KEY;
@@ -75,7 +76,7 @@ const StudentLogin = async (req, res) => {
 };
 
 const getSingleStudent = async (req, res) => {
-  const singleStudent = await Student.findOne({_id: req.params.id}, (err, result) => {
+  const singleStudent = await Student.findOne({_id: mongoose.Types.ObjectId(req.params.id)}, (err, result) => {
       if(result) {
         res.send(result);
       } else {

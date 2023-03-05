@@ -27,7 +27,9 @@ const assessmentRoute = require("./routes/assessment.routes")
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 app.use("/student", studentRoutes);
 app.use("/admin", adminRoutes);

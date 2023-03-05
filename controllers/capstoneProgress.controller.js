@@ -32,7 +32,7 @@ const getAllCapstoneProgress = (req,res,next)=>{
 
 const getCapstoneQualification = (req, res, next) =>{
     const studentId = req.query.studentId;
-    CapstoneProgressModel.findOne({_id : studentId},'Status', (err, result) => {
+    CapstoneProgressModel.findOne({_id : mongoose.Types.ObjectId(studentId)},'Status', (err, result) => {
       console.log(result.Status);
       res.json({ Status : result.Status });
     });
@@ -40,7 +40,7 @@ const getCapstoneQualification = (req, res, next) =>{
 
 const getCapstoneApproachDate = (req, res, next) =>{
     const studentId = req.query.studentId;
-    CapstoneProgressModel.findOne({_id : studentId},'capstoneStartDate capstoneEndDate', (err, result) => {
+    CapstoneProgressModel.findOne({_id : mongoose.Types.ObjectId(studentId)},'capstoneStartDate capstoneEndDate', (err, result) => {
       res.json({ 
         startDate : result.capstoneStartDate, 
         endDate : result.capstoneEndDate 
@@ -50,7 +50,7 @@ const getCapstoneApproachDate = (req, res, next) =>{
 
 const getCapstoneSessionAttendance = (req, res, next) =>{
     const studentId = req.query.studentId;
-    CapstoneProgressModel.findOne({_id: studentId},'capstoneAttendance', (err, result) => {
+    CapstoneProgressModel.findOne({_id: mongoose.Types.ObjectId(studentId)},'capstoneAttendance', (err, result) => {
       res.json({ 
         capstoneSessionAttendance : result.capstoneAttendance 
       });
@@ -59,7 +59,7 @@ const getCapstoneSessionAttendance = (req, res, next) =>{
 
 const getCapstonePerformance = (req, res, next) =>{
     const studentId = req.query.studentId;
-    CapstoneProgressModel.findOne({_id: studentId},'capstonePhaseMarks', (err, result) => {
+    CapstoneProgressModel.findOne({_id: mongoose.Types.ObjectId(studentId)},'capstonePhaseMarks', (err, result) => {
       res.json({ 
         score : result.capstonePhaseMarks,
         totalScore :  result.capstonePhaseMarks.Phase1.Marks 
