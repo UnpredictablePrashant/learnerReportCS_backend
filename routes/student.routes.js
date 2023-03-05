@@ -1,6 +1,6 @@
 const express = require("express");
 const { Register } = require("../controllers/student.controller");
-const { StudentLogin , getSingleStudent, updateStudentProfile} = require("../controllers/student.controller");
+const { StudentLogin , getSingleStudent, updateStudentProfile,getAllStudentNames} = require("../controllers/student.controller");
 const {getAllStudent} = require("../controllers/common/fetchAll")
 // const authorization = require("../middlewares/middleware");
 

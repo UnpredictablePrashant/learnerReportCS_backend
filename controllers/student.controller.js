@@ -84,6 +84,19 @@ const getSingleStudent = async (req, res) => {
     }).clone();  
 }
 
+const getAllStudentNames = async (req,res)=>{
+  try{
+    const allStudent = await Student.find({})
+    const studentNames = allStudent.map((data)=>{
+      return data.username
+    })
+    res.send(studentNames)
+  }
+  catch(err){
+    res.send(err)
+  }
+}
+
 const updateStudentProfile = async(req, res) => {
   const payload = {
     username: req.body.username,
@@ -110,4 +123,4 @@ const updateStudentProfile = async(req, res) => {
   }
 }
 
-module.exports = { Register, StudentLogin , getSingleStudent, updateStudentProfile };
+module.exports = { Register, StudentLogin , getSingleStudent, updateStudentProfile, getAllStudentNames };

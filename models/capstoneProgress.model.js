@@ -61,10 +61,6 @@ const capstoneProgressSchema = Schema(
     finalSubmission: {
         type: Boolean,
     },
-    capstoneAttendance: {
-        // take this from already attendance piece done
-        type: Number,
-    },
     Status: {
         type: String,
         enum: {

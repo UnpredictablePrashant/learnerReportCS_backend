@@ -1,5 +1,6 @@
 const AttendanceModel = require('../models/attendance.model');
 const studentModel = require('../models/student.model');
+const CapstoneAttendance = require('../models/capstoneAttendance.model')
 const attendanceRegister = async (req, res) => {
 	const req_JSON_attencdance = req.body;
 	console.log(req_JSON_attencdance);
@@ -84,4 +85,23 @@ const getAbsentCount = async (req, res) => {
 	}
 };
 
-module.exports = { attendanceRegister, getattendance, getAbsentCount };
+const capstoneAttendance = async(req,res)=>{
+	try{
+		let student = await CapstoneAttendance.find({StudentName:req.body.StudentName})
+		if(student.length>0){
+			let updatedAttendance = await CapstoneAttendance.findOneAndUpdate({StudentName:req.body.StudentName},{Attendance:req.body.Attendance},{new:true})
+			// console.log("student", student)
+			// console.log("ua",updatedAttendance)
+		}
+		else{
+			let attendance = await CapstoneAttendance.create(req.body)
+		    // console.log(attendance)
+		}
+		res.status(200).send("Attendance Updated Successfully")
+	}
+	catch(err){
+		res.status(400).send(err)
+	}
+}
+
+module.exports = { attendanceRegister, capstoneAttendance, getattendance, getAbsentCount };
