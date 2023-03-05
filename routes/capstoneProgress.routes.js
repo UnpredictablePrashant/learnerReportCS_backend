@@ -4,7 +4,9 @@ const capstoneProgressController  = require("../controllers/capstoneProgress.con
 const authorization = require("../middlewares/middleware");
 
 routes.post("/postCapstoneProgress", capstoneProgressController.postCapstoneProgress);
-routes.get("/getCapstoneProgress", capstoneProgressController.getCapstoneProgress);
+routes.get("/getCapstoneDetails/:id", capstoneProgressController.getCapstoneDetails);
+routes.get("/getAllCapstoneProgress", capstoneProgressController.getAllCapstoneProgress);
+
 routes.get("/getCapstoneQualification", capstoneProgressController.getCapstoneQualification);
 routes.get("/getCapstoneApproachDate", capstoneProgressController.getCapstoneApproachDate);
 routes.get("/getCapstoneSessionAttendance", capstoneProgressController.getCapstoneSessionAttendance);

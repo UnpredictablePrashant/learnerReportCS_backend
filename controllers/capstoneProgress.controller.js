@@ -1,4 +1,4 @@
-const CapstoneProgressModel = require("../models/capstoneProgress.model");
+const CapstoneProgressModel = require("../models/capstoneProgress.model")
 const mongoose = require("mongoose");
 
 const postCapstoneProgress = (req, res, next) => {
@@ -12,11 +12,22 @@ const postCapstoneProgress = (req, res, next) => {
     })
 }
 
-const getCapstoneProgress = (req, res, next) => {
-    const studentId = req.query.studentId;
-    CapstoneProgressModel.findOne({_id : studentId}, (err, result) => {
-        res.status(200).send(result);
-    });
+const getCapstoneDetails = async (req, res, next) => {
+    const _id = req.params.id;
+    try{
+      const data = await CapstoneProgressModel.findById({_id})
+      // console.log(data)
+      res.status(200).send(data)
+    }
+    catch(err){
+      res.status(400).send("An error Occured")
+    }
+  }
+
+const getAllCapstoneProgress = (req,res,next)=>{
+  CapstoneProgressModel.find({},(err,result)=>{
+    res.status(200).send(result)
+  })
 }
 
 const getCapstoneQualification = (req, res, next) =>{
@@ -61,7 +72,8 @@ const getCapstonePerformance = (req, res, next) =>{
 
 module.exports = {
   postCapstoneProgress,
-  getCapstoneProgress,
+  getCapstoneDetails,
+  getAllCapstoneProgress,
   getCapstoneQualification,
   getCapstoneApproachDate,
   getCapstoneSessionAttendance,
