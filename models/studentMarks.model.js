@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
 const AssignmentSchema = mongoose.Schema({
-    TotalMarks:Number,
+    AssignmentId:{
+        type:mongoose.Schema.Types.ObjectId, ref:"Assignment"
+    },
     Score:Number
 })
 
