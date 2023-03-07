@@ -18,6 +18,7 @@ const batchRegisterRoute = require("./routes/batchRegister.route");
 const getBatchRoute = require("./routes/common.route");
 const attendanceRoute = require("./routes/attendance.routes");
 const companyRoute = require("./routes/company.routes");
+const assignmentRoutes =  require("./routes/assignment.routes")
 
 const placementRoute = require("./routes/learnerPlacement.routes");
 const capstoneProgressRoutes = require("./routes/capstoneProgress.routes");
@@ -43,6 +44,7 @@ app.use("/company", companyRoute);
 app.use("/placement", placementRoute);
 app.use("/capstoneProgress", capstoneProgressRoutes);
 app.use("/assessment", assessmentRoute)
+app.use("/assignment",assignmentRoutes)
 
 // app.use("/users",);
 
@@ -52,5 +54,5 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
   connect();
-  console.log(`Example app listening at http://localhost:3001`);
+  console.log(`Server connect to ${port}`);
 });

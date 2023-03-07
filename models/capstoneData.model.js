@@ -10,6 +10,9 @@ let schema = mongoose.Schema(
       type: String,
       require: true,
     },
+    StudentId:{
+        type:mongoose.Types.ObjectId
+    },
     CourseName:{
         type:String,
         require:true
