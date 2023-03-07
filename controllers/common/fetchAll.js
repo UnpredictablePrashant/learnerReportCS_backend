@@ -1,5 +1,6 @@
 const Student = require("../../models/student.model");
 const Batch = require("../../models/batchRegistration.model");
+const CapstoneData = require("../../models/capstoneData.model")
 
 const getAllStudent = (req, res) => {
     Student.find({}, (err, result) => {
@@ -25,6 +26,16 @@ const getAllStudent = (req, res) => {
     });
   };
 
+  const postCapstoneData = (req,res)=>{
+   CapstoneData.create(req.body).then((data)=>{
+    res.status(200).json({
+      data,
+      message:"Capstone Data created successfully"
+    }).catch((err)=>{
+      res.status(400).send(err)
+    })
+   })
+  }
   
 
-module.exports = { getAllStudent, getBatchStudent , getAllBatch };
+module.exports = { getAllStudent, getBatchStudent , getAllBatch,postCapstoneData };
