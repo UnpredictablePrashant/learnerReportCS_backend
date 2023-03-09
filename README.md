@@ -59,9 +59,9 @@ TODO
 
 | Modules | Features | Backend | Frontend | Integration |
 | ------- | -------- | ------- | -------- | ----------- |
-| Account Creation & Login| Faculty Account | [x] | [x] | [x] |
-| Account Creation & Login | Career Service Account | [x] | [x] | [x] |
-| Batch Management | Batch Creation | [ ] | [ ] | [ ] |
-| Batch Management | Assign Student to Batches | [ ] | [ ] | [ ] |
-| Attendance | Give attendance to student | [x] | [x] | [x] |
-| Attendance | Show attendance to career services | [x] | [x] | [x]|
+| Account Creation & Login| Faculty Account | <ul><li>- [x] </li></ul> |<ul><li>- [x] </li></ul>| <ul><li>- [x] </li></ul> |
+| Account Creation & Login | Career Service Account |<ul><li>- [x] </li></ul> | <ul><li>- [x] </li></ul> | <ul><li>- [x] </li></ul> |
+| Batch Management | Batch Creation |<ul><li>- [ ] </li></ul>| <ul><li>- [ ] </li></ul> | <ul><li>- [ ] </li></ul> |
+| Batch Management | Assign Student to Batches |<ul><li>- [ ] </li></ul> | <ul><li>- [ ] </li></ul> |<ul><li>- [ ] </li></ul> |
+| Attendance | Give attendance to student | <ul><li>- [x] </li></ul> |<ul><li>- [x] </li></ul>|<ul><li>- [x] </li></ul> |
+| Attendance | Show attendance to career services | <ul><li>- [x] </li></ul> | <ul><li>- [x] </li></ul>|<ul><li>- [x] </li></ul>|
