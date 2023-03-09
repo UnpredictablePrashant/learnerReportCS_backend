@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
 
-let CapstoneAttendanceSchema = Schema(
+let schema = mongoose.Schema(
   {
     BatchNumber: {
       type: String,
@@ -11,23 +10,28 @@ let CapstoneAttendanceSchema = Schema(
       type: String,
       require: true,
     },
+    StudentId:{
+        type:mongoose.Types.ObjectId
+    },
     CourseName:{
         type:String,
         require:true
     },
-    SessionDate: {
+    StartDate: {
       type: String,
     },
-    Attendance: {
+    EndDate:{
+        type:String,
+    },
+
+    CapstoneName: {
       type: String,
-      enum:["Present","Absent"]
     }
   },
   {
-    collection: "CapstoneAttendanceInfo",
+    collection: "CapstoneDataInfo",
   }
 );
 
-const CapstoneAttendance = mongoose.model("CapstoneAttendanceInfo", CapstoneAttendanceSchema);
+module.exports= mongoose.model("CapstoneDataInfo", schema);
 
-module.exports = CapstoneAttendance;
