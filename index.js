@@ -23,6 +23,7 @@ const assignmentRoutes =  require("./routes/assignment.routes")
 const placementRoute = require("./routes/learnerPlacement.routes");
 const capstoneProgressRoutes = require("./routes/capstoneProgress.routes");
 const assessmentRoute = require("./routes/assessment.routes")
+const capstoneDataRoutes = require('./routes/capstonedata.routes')
 
 
 app.use(cookieParser());
@@ -34,7 +35,7 @@ app.use(cors({
 
 app.use("/student", studentRoutes);
 app.use("/admin", adminRoutes);
-app.use("/careerService", careerServiceRoutes);
+app.use("/careerservice", careerServiceRoutes);
 app.use("/faculty", facultyRoute);
 app.use("/", getBatchRoute);
 app.use("/", questionUploadRoute);
@@ -45,6 +46,7 @@ app.use("/placement", placementRoute);
 app.use("/capstoneProgress", capstoneProgressRoutes);
 app.use("/assessment", assessmentRoute)
 app.use("/assignment",assignmentRoutes)
+app.use("/capstone", capstoneDataRoutes)
 
 // app.use("/users",);
 

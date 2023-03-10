@@ -26,16 +26,7 @@ const getAllStudent = (req, res) => {
     });
   };
 
-  const postCapstoneData = (req,res)=>{
-   CapstoneData.create(req.body).then((data)=>{
-    res.status(200).json({
-      data,
-      message:"Capstone Data created successfully"
-    }).catch((err)=>{
-      res.status(400).send(err)
-    })
-   })
-  }
+ 
   
 
-module.exports = { getAllStudent, getBatchStudent , getAllBatch,postCapstoneData };
+module.exports = { getAllStudent, getBatchStudent , getAllBatch };

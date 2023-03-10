@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const connect = () => {
     //  mongoose.connect(process.env.MONGO,{autoIndex:true});
     mongoose
-      .connect("mongodb://localhost:27017", {
+      .connect(process.env.ATLAS_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       })

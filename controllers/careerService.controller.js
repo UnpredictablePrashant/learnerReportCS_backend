@@ -1,4 +1,5 @@
-const { careerService } = require("../models/careerService.model");
+const { careerService } = require('../models/careerService.model')
+// const { careerService } = require("../models/careerService.model");
 const crypto = require("crypto");
 
 
@@ -43,7 +44,7 @@ const careerServiceLogin = (req, res) => {
     console.log("Please fill all the details");
     res.send({ message: "Please fill all the details" });
   } else {
-    careerService.findOne({ email: email }, (err, result) => {
+    careerService.findOne({ email: email }, (err, result) => {  
       if (result) {
         req.body.password = crypto
           .createHash("sha256", hashKey)
@@ -60,7 +61,7 @@ const careerServiceLogin = (req, res) => {
             result: result,
             token: jwtToken,
           };
-          // console.log(resultpayload);
+          console.log(resultpayload);
           res.send(resultpayload);
         } else {
           res.status(400).send("Wrong Password");
