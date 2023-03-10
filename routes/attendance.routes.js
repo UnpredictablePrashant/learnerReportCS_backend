@@ -7,4 +7,7 @@ routes.post("/register", Attendance.attendanceRegister)
 routes.get("/:id", Attendance.getattendance)
 routes.get("/attendanceCount/:id" ,Attendance.getAbsentCount)
 routes.post("/capstoneAttendance",Attendance.capstoneAttendance)
+routes.get('/capstoneAttendance/:id', Attendance.getCapstoneAttendanceId)
+routes.get('/getCapstoneAttendanceValue/:id', Attendance.getCapstoneAttendanceValue)
+
 module.exports = routes;

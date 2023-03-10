@@ -11,6 +11,10 @@ let CapstoneAttendanceSchema = Schema(
       type: String,
       require: true,
     },
+    StudentId: {
+      type: String,
+      require: true
+    },
     CourseName:{
         type:String,
         require:true

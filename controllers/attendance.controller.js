@@ -87,16 +87,16 @@ const getAbsentCount = async (req, res) => {
 
 const capstoneAttendance = async(req,res)=>{
 	try{
-		let student = await CapstoneAttendance.find({StudentName:req.body.StudentName})
-		if(student.length>0){
-			let updatedAttendance = await CapstoneAttendance.findOneAndUpdate({StudentName:req.body.StudentName},{Attendance:req.body.Attendance},{new:true})
-			// console.log("student", student)
-			// console.log("ua",updatedAttendance)
-		}
-		else{
+		// let student = await CapstoneAttendance.find({SessionDate: req.body.SessionDate})
+		// if(student.length>0){
+		// 	let updatedAttendance = await CapstoneAttendance.findOneAndUpdate({StudentName:req.body.StudentName},{Attendance:req.body.Attendance},{new:true})
+		// 	// console.log("student", student)
+		// 	// console.log("ua",updatedAttendance)
+		// }
+		// else{
 			let attendance = await CapstoneAttendance.create(req.body)
 		    // console.log(attendance)
-		}
+		// }
 		res.status(200).send("Attendance Updated Successfully")
 	}
 	catch(err){
@@ -104,4 +104,34 @@ const capstoneAttendance = async(req,res)=>{
 	}
 }
 
-module.exports = { attendanceRegister, capstoneAttendance, getattendance, getAbsentCount };
+const getCapstoneAttendanceId = async (req,res) => {
+	try{
+		let student = await CapstoneAttendance.find({StudentId:req.params.id})
+		console.log(student)
+		res.send(student)
+	}catch{
+		res.send({message: 'Something went Wrong'})
+	}
+}
+
+const getCapstoneAttendanceValue = async (req,res) => {
+	try{
+		let student = await CapstoneAttendance.find({StudentId:req.params.id})
+		let absentVal = 0;
+		let presentVal = 0;
+		student.map((attendance) => {
+			if(attendance.Attendance == 'Absent'){
+				absentVal++
+			}else{
+				presentVal++
+			}
+		})
+		console.log('absent: ', absentVal)
+		console.log('present: ', presentVal)
+		res.send({totalAttendance: absentVal+presentVal, absent: absentVal, present: presentVal})
+	}catch{
+		res.send({message: "Something went wrong"})
+	}
+}
+
+module.exports = { attendanceRegister, capstoneAttendance, getattendance, getAbsentCount,getCapstoneAttendanceId, getCapstoneAttendanceValue };
